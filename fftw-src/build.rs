@@ -75,10 +75,9 @@ fn build_fftw(flags: &[&str], src_dir: &Path, out_dir: &Path) {
             .arg("--disable-doc")
             .arg(format!("--prefix={}", out_dir.display()))
             .args(flags)
-            .args("--enable-avx512")
+            .arg("--enable-avx512")
             .current_dir(&src_dir),
     );
-    panic("fftw is build");
     run(Command::new("make")
         .arg(format!("-j{}", var("NUM_JOBS").unwrap()))
         .current_dir(&src_dir));
